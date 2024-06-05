@@ -1,23 +1,30 @@
-function isEnoughCapacity(products, containerSize) {
-    let totalQuantity = 0;
-    for (let quantity of Object.values(products)) {
-        totalQuantity += quantity;
-    }
-    return totalQuantity <= containerSize;
-}
+const customer = {
+  username: "Mango",
+  balance: 24000,
+  discount: 0.1,
+  orders: ["Burger", "Pizza", "Salad"],
+  // Change code below this line
+  getBalance() {
+    return this.balance;
+  },
+  getDiscount() {
+    return this.discount;
+  },
+  setDiscount(value) {
+    this.discount = value;
+  },
+  getOrders() {
+    return this.orders;
+  },
+  addOrder(cost, order) {
+    this.balance -= cost - cost * this.discount;
+    this.orders.push(order);
+  },
+};
 
-console.log(
-  isEnoughCapacity({ apples: 2, grapes: 3, carrots: 1 }, 8)
-); // true
 
-console.log(
-  isEnoughCapacity({ apples: 4, grapes: 6, lime: 16 }, 12)
-); // false
-
-console.log(
-  isEnoughCapacity({ apples: 1, lime: 5, tomatos: 3 }, 14)
-); // true
-
-console.log(
-  isEnoughCapacity({ apples: 18, potatos: 5, oranges: 2 }, 7)
-); // false
+customer.setDiscount(0.15);
+console.log(customer.getDiscount()); 
+customer.addOrder(5000, "Steak");
+console.log(customer.getBalance()); 
+console.log(customer.getOrders()); 
